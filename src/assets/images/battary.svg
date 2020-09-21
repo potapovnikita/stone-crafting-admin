@@ -1,0 +1,7 @@
+<svg id="charge_level" width="168" height="70" viewBox="0 0 168 70" xmlns="http://www.w3.org/2000/svg" fill="#EFEFEF">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M10 0C4.47715 0 0 4.47715 0 10V60C0 65.5229 4.47715 70 10 70H151C156.523 70 161 65.5229 161 60V45H165C166.657 45 168 43.6569 168 42V30C168 28.3431 166.657 27 165 27H161V10C161 4.47715 156.523 0 151 0H10Z"/>
+    <clipPath id="cut-off-bottom">
+        <rect x="0" y="0" height="100"/>
+    </clipPath>
+    <path clip-path="url(#cut-off-bottom)" d="M10 0C4.47715 0 0 4.47715 0 10V60C0 65.5229 4.47715 70 10 70H151C156.523 70 161 65.5229 161 60V45H165C166.657 45 168 43.6569 168 42V30C168 28.3431 166.657 27 165 27H161V10C161 4.47715 156.523 0 151 0H10Z" fill="#D2DE88"/>
+</svg>
