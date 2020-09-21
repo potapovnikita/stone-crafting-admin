@@ -1,4 +1,4 @@
-# territoryofcare-front
+# stone-crafting-admin-front
 
 ## Project setup
 ```
