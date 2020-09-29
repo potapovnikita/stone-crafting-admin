@@ -165,6 +165,10 @@ export default {
       top 5px
       right -60px
 
+      @media only screen and (max-width 600px)
+        right 15px
+
+
 
 
 </style>

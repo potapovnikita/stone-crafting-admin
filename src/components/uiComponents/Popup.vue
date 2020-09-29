@@ -57,6 +57,8 @@ export default {
       background white
       padding 30px 20px
       border-radius 20px
+      @media only screen and (max-width 600px)
+        width 100%
 
       .close
         position absolute
