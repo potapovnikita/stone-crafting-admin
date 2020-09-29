@@ -2,12 +2,12 @@
   div
     .select-container
       .select(@click="isOpen= !isOpen" :class="{'opened': isOpen}")
-        .values(v-if="isMulti && selected && selected.length")
-          .item(v-for="option in selected")
+        .values(v-if="isMulti && value && value.length")
+          .item(v-for="option in value")
             | {{option.name}}
             .icon.delete(@click="(e) => removeOption(option)")
               XIcon
-        .value(v-else-if="!isMulti && selected") {{selected.name}}
+        .value(v-else-if="!isMulti && value") {{value.name}}
         .placeholder(v-else) {{placeholder}}
 
         .arrow
@@ -34,7 +34,6 @@ export default {
   data() {
     return {
       isOpen: false,
-      selected: this.value,
     }
   },
   props: {
@@ -46,16 +45,14 @@ export default {
     options: Array,
   },
   methods: {
-    // getSelected() {
-    //   return
-    // },
     removeOption(option) {
-      this.selected = this.selected.filter(i => i.id !== option.id)
+      const newVal = this.value.filter(i => i.id !== option.id)
+      this.$emit('update:value', newVal)
     },
     isSelected(option) {
-      if (this.selected) {
-        if (this.isMulti) return this.selected.find((item) => item.id === option.id)
-        return this.selected.id === option.id
+      if (this.value) {
+        if (this.isMulti) return this.value.find((item) => item.id === option.id)
+        return this.value.id === option.id
       }
       return false;
 
@@ -65,13 +62,13 @@ export default {
     },
     selectOption(option) {
       if (this.isMulti) {
-        this.selected.push(option)
+        this.$emit('update:value', [...this.value, option])
       } else {
-        this.selected = option;
+        this.$emit('update:value', option)
         this.isOpen = false;
       }
 
-      this.$emit('update:value', this.selected)
+
     }
   },
   computed: {
@@ -81,7 +78,6 @@ export default {
   },
   mounted() {
     this.popupItem = this.$el
-    // this.$emit('update:value', this.selected)
   },
   created() {
   },
