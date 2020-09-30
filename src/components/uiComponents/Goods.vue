@@ -102,13 +102,13 @@ export default {
 
         if (inStock.length) {
           isHave.push(inStock
-            .find(i => i.id === good.inStock.id)
+            .some(i => i.id === good.inStock.id)
           )
         }
 
         if (category.length) {
           isHave.push(category
-            .find(i => i.id === good.category.id)
+            .some(i => i.id === good.category.id)
           )
         }
 
