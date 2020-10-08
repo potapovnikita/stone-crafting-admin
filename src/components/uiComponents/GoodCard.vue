@@ -36,6 +36,10 @@
         span(v-if="!good.themes.length") темы не указаны
 
     .item
+      .title Размер:
+      .content {{good.size ? good.size : '-'}} (в мм)
+
+    .item
       .title Цена:
       .content {{good.price ? good.price + ' ₽' : '-'}} (в $ переводится автоматически по текущему курсу)
 
@@ -60,13 +64,21 @@
       .content
         .images(v-if="good.photos && good.photos.length")
           img.img(v-for="photo in good.photos" :src="photo.url" alt="photo.name")
-        span(v-if="!good.photos || !good.photos.length") фотографий нет
+        span(v-if="!good.photos || !good.photos.length") Фотографий нет
+
+    .item
+      .title Видео:
+      .content
+        .video(v-if="good.videos && good.videos.length")
+          a.vid(v-for="vid in good.videos" :href="vid.url" target="_blank") {{vid.name}}
+        span(v-if="!good.videos || !good.videos.length") Видео нет
+
     .item
       .title Документы:
       .content
         .documents(v-if="good.documents && good.documents.length")
           a.doc(v-for="doc in good.documents" :href="doc.url" target="_blank") {{doc.name}}
-        span(v-if="!good.documents || !good.documents.length") документов нет
+        span(v-if="!good.documents || !good.documents.length") Документов нет
 
 
 
@@ -149,9 +161,11 @@ export default {
       display flex
       flex-direction column
       .documents
+      .video
         display flex
         flex-direction column
         .doc
+        .vid
           color $main_color_blue
           cursor pointer
           text-decoration none

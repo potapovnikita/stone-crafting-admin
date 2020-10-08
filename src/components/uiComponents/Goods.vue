@@ -8,6 +8,8 @@
     h3 Фильтр
     .filters
       .form_item__container
+        Input(name="material" v-model.trim="filterState.search" placeholder="Поиск по тексту" width="100%")
+      .form_item__container
         Select(:options="categories" :value.sync="filterState.category" placeholder="Категории" isMulti)
       .form_item__container
         Select(:options="themes" :value.sync="filterState.themes" placeholder="Темы" isMulti)
@@ -69,11 +71,11 @@ export default {
   computed: {
     ...mapState(['categories', 'goods']),
     filterStateIsEmpty() {
-      const { themes, cities, inStock, category, price } = this.filterState;
-      return !themes.length && !cities.length && !inStock.length && !category.length && !price;
+      const { themes, cities, inStock, category, price, search } = this.filterState;
+      return !themes.length && !cities.length && !inStock.length && !category.length && !price && !search;
     },
     filteredGoods() {
-      const { themes, cities, inStock, category, price } = this.filterState;
+      const { themes, cities, inStock, category, price, search } = this.filterState;
 
       const goods = [...this.goods];
       const filtered = []
@@ -118,6 +120,7 @@ export default {
 
       if (price === 'bottomToTop') filtered.sort((a, b) => Number(a.price) - Number(b.price))
       if (price === 'topToBottom') filtered.sort((a, b) => Number(b.price) - Number(a.price))
+      if (search.length > 2) return this.searchByAll(filtered, search)
 
       return filtered
     }
@@ -135,16 +138,7 @@ export default {
         inStock: [],
         category: [],
         price: null,
-
-        // name: '',
-        // description: '',
-        // descriptionEng: '',
-        // material: '',
-        // materialEng: '',
-        // year: '',
-        // yearEng: '',
-        // price: '',
-        // size: '',
+        search: '',
       },
     }
   },
@@ -155,6 +149,23 @@ export default {
       this.$set(this.filterState, 'inStock', []);
       this.$set(this.filterState, 'category', []);
       this.$set(this.filterState, 'price', null);
+      this.$set(this.filterState, 'search', '');
+    },
+    searchByAll(arr, search) {
+      const searched = [];
+      const searchProp = ['name', 'description', 'nameEng', 'descriptionEng', 'material', 'materialEng', 'year', 'yearEng', 'price', 'size'];
+
+      for(let i = 0; i < arr.length; i++) {
+        const good = arr[i];
+        for(let j = 0; j < Object.keys(good).length; j++) {
+          const key = Object.keys(good)[j];
+          if (searchProp.includes(key) && good[key].includes(search)) {
+            searched.push(good);
+            break;
+          }
+        }
+      }
+      return searched;
     },
     setSortPrice(type) {
       const filter = this.filterState.price === type ? null : type

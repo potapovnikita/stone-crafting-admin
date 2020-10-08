@@ -151,8 +151,10 @@ const store = new Vuex.Store({
       commit('setLoader', true)
       const photos = await uploadFiles(good.photos, 'photos');
       const documents = await uploadFiles(good.documents, 'documents');
+      const videos = await uploadFiles(good.videos, 'videos');
       good.photos = photos;
       good.documents = documents;
+      good.videos = videos;
       await fb.goodsCollection.add({
         ...good,
         createdOn: new Date(),

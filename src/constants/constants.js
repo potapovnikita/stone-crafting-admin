@@ -108,5 +108,6 @@ export const goodInitial = {
   category: null,
   photos: [],
   documents: [],
+  videos: [],
 };
 

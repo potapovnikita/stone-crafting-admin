@@ -56,6 +56,33 @@
               | Удалить
               Trash2Icon
 
+
+    .form_item__container
+      .add_file_container
+        h4.title Видео
+        input#fileInput(type="file"
+          ref="videoRef"
+          accept="video/mp4,video/x-m4v,video/*"
+          multiple
+          style="display: none"
+          @change="updateVideos"
+        )
+        .add_file.icon.add(@click="addVideo()")
+          | Загрузить&nbsp;
+          ImageIcon
+          PlusIcon
+
+        .files_empty(v-if="good.videos && good.videos.length === 0") Видео не добавлено
+        .files.docs(v-if="good.videos && good.videos.length")
+          .file(v-for="(file, index) in good.videos" :key="index")
+            .item {{file.name}}
+            .delete_doc.icon.delete(title="Удалить видео" @click="deleteFile(index, 'video')")
+              | Удалить
+              Trash2Icon
+
+
+
+
     .form_item__container
       .add_file_container
         h4.title Документы
@@ -153,9 +180,16 @@ export default {
         e.target.value = '';
       }
     },
+    updateVideos(e) {
+      if (e.target.files.length) {
+        this.$set(this.good, 'videos', this.good.videos ? [...this.good.videos, ...e.target.files] : [...e.target.files]);
+        e.target.value = '';
+      }
+    },
     deleteFile(index, type) {
       if (type === 'photo') this.good.photos.splice(index, 1);
       if (type === 'doc') this.good.documents.splice(index, 1);
+      if (type === 'video') this.good.videos.splice(index, 1);
     },
     getFile(file) {
       if (file.url) return file.url
@@ -167,6 +201,9 @@ export default {
     },
     addDoc() {
       this.$refs.docRef.click();
+    },
+    addVideo() {
+      this.$refs.videoRef.click();
     },
     async addOrUpdateGood() {
       const good = {...this.good}
