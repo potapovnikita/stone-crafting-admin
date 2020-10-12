@@ -3,6 +3,15 @@
     h3 Добавить товар
     .form_item__container
       Select(:options="categories" :value.sync="good.category" placeholder="Выберите категорию")
+
+    .form_item__container
+      .label Кому виден товар:
+
+      Checkbox(v-for="check in stores"
+        :value="check"
+        v-model="good.visibility"
+        :name="check.name")
+
     .form_item__container
       Input(name="name" v-model.trim="good.name" :error="errors.name" placeholder="Название товара")
     .form_item__container
@@ -119,12 +128,13 @@
 import {mapState} from "vuex";
 import Button from "@/components/uiComponents/Button";
 import Input from "@/components/uiComponents/Input";
+import Checkbox from "@/components/uiComponents/Checkbox";
 import Popup from "@/components/uiComponents/Popup";
 
 import { EditIcon, XIcon, CheckCircleIcon, PlusIcon, ImageIcon, Trash2Icon, FileTextIcon } from 'vue-feather-icons'
 import Select from "@/components/uiComponents/Select";
 
-import {cities, goodInitial, stockStatuses, themes} from "@/constants/constants";
+import {cities, goodInitial, stockStatuses, themes, stores} from "@/constants/constants";
 import Textarea from "@/components/uiComponents/Textarea";
 import {arrayBufferToBase64, getFilesFromData, toBase64} from "@/sevices/utils";
 
@@ -135,6 +145,7 @@ export default {
     Input,
     Textarea,
     Button,
+    Checkbox,
     EditIcon,
     PlusIcon,
     ImageIcon,
@@ -165,6 +176,7 @@ export default {
       cities,
       stockStatuses,
       themes,
+      stores,
     }
   },
   methods: {

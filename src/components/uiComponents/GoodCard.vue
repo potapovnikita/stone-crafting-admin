@@ -11,6 +11,13 @@
       .content(v-else) Категория не указана
 
     .item
+      .title Товар виден:
+      .content.warning(v-if="!isVisible") Никому
+      .content(v-else)
+        span(v-for="cat in good.visibility") {{cat.name}}
+
+
+    .item
       .title Название:
       .content {{good.name || '-'}}
 
@@ -111,6 +118,9 @@ export default {
   },
   computed: {
     ...mapState(['categories', 'goods']),
+    isVisible() {
+      return this.good.visibility && this.good.visibility.length
+    },
   },
   data() {
     return {
@@ -160,6 +170,8 @@ export default {
     .content
       display flex
       flex-direction column
+      &.warning
+        color $light_red
       .documents
       .video
         display flex

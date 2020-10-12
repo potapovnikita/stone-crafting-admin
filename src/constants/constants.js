@@ -5,6 +5,17 @@ export const errorsFields = {
   server: 'Ошибка сервера',
 }
 
+export const stores = [
+  {
+    name: 'Партнеры',
+    code: 'partners',
+  },
+  {
+    name: 'Клиенты',
+    code: 'clients',
+  },
+]
+
 export const stockStatuses = [
   {
     id: 1,
@@ -47,48 +58,60 @@ export const cities = [
   },
 ]
 
+// Охота
+// Религиозная тема
+// Восточная тема
+// Исторические персоны
+// Герои сказок и былин
+// Россия
+// Америка
+// Азия
+// Европа
 export const themes = [
   {
     id: 1,
-    code: 'ekb',
     name: 'Охота',
-    nameEng: 'Охота',
+    nameEng: 'Hunting',
   },
   {
     id: 2,
-    code: 'spb',
-    name: 'Рыбалка',
-    nameEng: 'Рыбалка',
+    name: 'Религиозная тема',
+    nameEng: 'Religious theme',
   },
   {
     id: 3,
-    code: 'spb',
-    name: 'История',
-    nameEng: 'История',
+    name: 'Восточная тема',
+    nameEng: 'Eastern theme',
   },
   {
     id: 4,
-    code: 'spb',
-    name: 'Восток',
-    nameEng: 'Восток',
+    name: 'Исторические персоны',
+    nameEng: 'Historical persons',
   },
   {
     id: 5,
-    code: 'spb',
-    name: 'Запад',
-    nameEng: 'Запад',
+    name: 'Герои сказок и былин',
+    nameEng: 'Heroes of fairy tales and epics',
   },
   {
     id: 6,
-    code: 'spb',
-    name: 'Египет',
-    nameEng: 'Египет',
+    name: 'Россия',
+    nameEng: 'Russia',
   },
   {
     id: 7,
-    code: 'spb',
-    name: 'Религия',
-    nameEng: 'Религия',
+    name: 'Америка',
+    nameEng: 'America',
+  },
+  {
+    id: 8,
+    name: 'Азия',
+    nameEng: 'Asia',
+  },
+  {
+    id: 9,
+    name: 'Европа',
+    nameEng: 'Europe',
   },
 ]
 
@@ -102,6 +125,7 @@ export const goodInitial = {
   yearEng: '',
   price: '',
   size: '',
+  visibility: [],
   cities: [],
   themes: [],
   inStock: null,
