@@ -24,10 +24,22 @@ const routes = [
   { path: '*', redirect: '/cabinet' },
 ];
 
+routes.forEach(route => {
+  route.meta = {
+    ...route.meta,
+    title: 'Stone Crafting Admin'
+  }
+})
+
 export const router = new VueRouter({
   mode: 'history',
   routes,
 });
+
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title
+  next()
+})
 
 router.beforeResolve((to, from, next) => {
   // const isAuthenticated = cookies.get('token');

@@ -1,5 +1,5 @@
 <template lang='pug'>
-  div
+  .checkbox_container
     input(
       type="checkbox"
       :name="name"
@@ -44,19 +44,28 @@ export default Checkbox
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="stylus" scoped>
-input
-  border-radius 10px
-  padding 10px 23px 9px
-  color $main_color_blue
-  outline none
-  cursor pointer
-  border 1px solid $main_color_blue
+.checkbox_container
+  display flex
+  align-items center
+  flex-direction row
+  margin-bottom 8px
 
-  &.error
-    border 1px solid $light_red
-.errorText
-  color $light_red
-  font-size 14px
+  input
+    border-radius 10px
+    padding 10px 23px 9px
+    color $main_color_blue
+    outline none
+    cursor pointer
+    border 1px solid $main_color_blue
+    width 20px
+    height 20px
+    margin-right 10px
+
+    &.error
+      border 1px solid $light_red
+  .errorText
+    color $light_red
+    font-size 14px
 
 
 
