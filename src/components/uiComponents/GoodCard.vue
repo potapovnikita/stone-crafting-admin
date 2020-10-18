@@ -5,6 +5,18 @@
         EditIcon
       .icon.delete(title="Удалить товар" @click="deleteGood()")
         Trash2Icon
+
+    .item
+      .title Название:
+      .content {{good.name || '-'}}
+
+    .item
+      .title Название на Англ:
+      .content {{good.nameEng || '-'}}
+
+    .item
+      .title Номер товара:
+      .content {{good.number || '-'}}
     .item
       .title Категория:
       .content(v-if="good.category") {{good.category.name || '-'}}
@@ -16,14 +28,6 @@
       .content(v-else)
         span(v-for="cat in good.visibility") {{cat.name}}
 
-
-    .item
-      .title Название:
-      .content {{good.name || '-'}}
-
-    .item
-      .title Название на Англ:
-      .content {{good.nameEng || '-'}}
     .item
       .title Описание:
       .content {{good.description || '-'}}

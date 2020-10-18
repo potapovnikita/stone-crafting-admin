@@ -45,12 +45,12 @@
 import {mapState} from "vuex";
 import Button from "@/components/uiComponents/Button";
 import Input from "@/components/uiComponents/Input";
+import Select from "@/components/uiComponents/Select";
 
 import { EditIcon, XIcon, CheckCircleIcon, ChevronsDownIcon, ChevronsUpIcon } from 'vue-feather-icons'
 import AddGood from "@/components/uiComponents/AddGood";
 import GoodCard from "@/components/uiComponents/GoodCard";
 import {copyObject} from "@/sevices/utils";
-import Select from "@/components/uiComponents/Select";
 import { cities, goodInitial, stockStatuses, themes } from "@/constants/constants";
 
 export default {

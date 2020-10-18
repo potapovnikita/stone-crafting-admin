@@ -1,8 +1,18 @@
 <template lang='pug'>
   Popup(:onClose="() => onClose()")
-    h3 Добавить товар
+    h3 {{ goodForEdit ? 'Редактировать товар' : 'Добавить товар'}}
+    .form_item__container
+      Input(name="name" v-model.trim="good.name" :error="errors.name" placeholder="Название товара")
+    .form_item__container
+      Input(name="nameEng" v-model.trim="good.nameEng" :error="errors.nameEng" placeholder="Название товара на английском")
+
     .form_item__container
       Select(:options="categories" :value.sync="good.category" placeholder="Выберите категорию")
+
+    .form_item__container(v-if="good.number")
+      .label Номер товара:
+      span
+        b {{good.number}}
 
     .form_item__container
       .label Кому виден товар:
@@ -12,10 +22,6 @@
         v-model="good.visibility"
         :name="check.name")
 
-    .form_item__container
-      Input(name="name" v-model.trim="good.name" :error="errors.name" placeholder="Название товара")
-    .form_item__container
-      Input(name="nameEng" v-model.trim="good.nameEng" :error="errors.nameEng" placeholder="Название товара на английском")
     .form_item__container
       Textarea(name="description" v-model.trim="good.description" placeholder="Описание товара")
     .form_item__container

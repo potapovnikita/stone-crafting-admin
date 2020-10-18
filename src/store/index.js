@@ -160,6 +160,7 @@ const store = new Vuex.Store({
         createdOn: new Date(),
         goodId: uuidv4(),
         userId: fb.auth.currentUser.uid,
+        number: String(new Date().getTime()).slice(5),
       })
       commit('setLoader', false)
     },
@@ -173,6 +174,7 @@ const store = new Vuex.Store({
 
       await fb.goodsCollection.doc(good.id).update({
         ...good,
+        number: good. number || String(new Date().getTime()).slice(5),
       })
       commit('setLoader', false)
     },
