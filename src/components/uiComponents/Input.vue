@@ -14,8 +14,6 @@
 </template>
 
 <script>
-  // import fieldHoc from "@/components/hocs/fieldHoc.js";
-
   const Input = {
     name: 'Input',
     components: { },

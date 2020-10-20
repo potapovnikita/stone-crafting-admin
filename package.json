@@ -25,6 +25,7 @@
     "gulp": "^4.0.2",
     "gulp-ssh": "^0.7.0",
     "hls.js": "^0.13.2",
+    "jspdf": "^2.1.1",
     "kurento-utils": "^6.13.1",
     "normalize.css": "^8.0.1",
     "path": "^0.12.7",

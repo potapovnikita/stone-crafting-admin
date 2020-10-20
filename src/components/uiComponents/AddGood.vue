@@ -35,7 +35,7 @@
     .form_item__container
       Input(name="yearEng" v-model.trim="good.yearEng" placeholder="Год создания на английском")
     .form_item__container
-      Input(name="size" v-model.trim="good.size" placeholder="Размер (в мм)")
+      Input(name="size" v-model.trim="good.size" placeholder="Размер")
     .form_item__container
       Input(name="price" v-model.trim="good.price" :error="errors.price" placeholder="Цена")
     .form_item__container

@@ -91,6 +91,9 @@
       },
     },
     mounted() {
+      window.onbeforeunload = function() {
+        return confirm('Точно хотите выйти?');
+      }
     }
   }
 </script>

@@ -104,7 +104,7 @@ export default {
 
         if (inStock.length) {
           isHave.push(inStock
-            .some(i => i.id === good.inStock.id)
+            .some(i => good.inStock && i.id === good.inStock.id)
           )
         }
 
@@ -153,7 +153,7 @@ export default {
     },
     searchByAll(arr, search) {
       const searched = [];
-      const searchProp = ['name', 'description', 'nameEng', 'descriptionEng', 'material', 'materialEng', 'year', 'yearEng', 'price', 'size'];
+      const searchProp = ['name', 'description', 'nameEng', 'descriptionEng', 'material', 'materialEng', 'year', 'yearEng', 'price', 'size', 'number'];
 
       for(let i = 0; i < arr.length; i++) {
         const good = arr[i];
