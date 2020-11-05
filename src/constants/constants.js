@@ -125,6 +125,7 @@ export const goodInitial = {
   yearEng: '',
   price: '',
   size: '',
+  sizeEng: '',
   visibility: [],
   cities: [],
   themes: [],

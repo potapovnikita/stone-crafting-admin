@@ -58,13 +58,17 @@
       .content {{good.size ? good.size : '-'}}
 
     .item
+      .title Размер на англ:
+      .content {{good.sizeEng ? good.sizeEng : '-'}}
+
+    .item
       .title Цена:
       .content {{good.price ? good.price + ' ₽' : '-'}} (в $ переводится автоматически по текущему курсу)
 
     .item
       .title Год:
       .content {{good.year || '-'}}
-    .item
+    //.item
       .title Год на англ:
       .content {{good.yearEng || '-'}}
     .item

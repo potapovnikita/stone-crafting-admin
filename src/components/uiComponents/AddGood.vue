@@ -32,10 +32,12 @@
       Input(name="materialEng" v-model.trim="good.materialEng" placeholder="Материалы на английском")
     .form_item__container
       Input(name="year" v-model.trim="good.year" placeholder="Год создания")
-    .form_item__container
+    //.form_item__container
       Input(name="yearEng" v-model.trim="good.yearEng" placeholder="Год создания на английском")
     .form_item__container
       Input(name="size" v-model.trim="good.size" placeholder="Размер")
+    .form_item__container
+      Input(name="sizeEng" v-model.trim="good.sizeEng" placeholder="Размер на английском")
     .form_item__container
       Input(name="price" v-model.trim="good.price" :error="errors.price" placeholder="Цена")
     .form_item__container
@@ -94,8 +96,6 @@
             .delete_doc.icon.delete(title="Удалить видео" @click="deleteFile(index, 'video')")
               | Удалить
               Trash2Icon
-
-
 
 
     .form_item__container

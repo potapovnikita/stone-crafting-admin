@@ -186,12 +186,14 @@ const store = new Vuex.Store({
     },
 
     async createCert({ state, commit }, good) {
+      console.log('data', data)
       const data = {
         number: good.number,
         name: good.name,
         materials: good.materials,
         size: good.size,
         material_obivki: good.materials,
+        photo: good.photos && good.photos.length && good.photos[0].url
       }
       const res = await axios.post(
         'https://nikita--potapov.jsreportonline.net/api/report',
