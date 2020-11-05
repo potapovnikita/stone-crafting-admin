@@ -1,6 +1,6 @@
 <template lang='pug'>
   .good
-    //#btn.form_item__container
+    #btn.form_item__container
       Button(:onClick="() => createCert()" name="Создать сертификат")
     ConfirmPopup(v-if="showConfirmDelete"
       title="Вы точно хотите удалить товар?"
@@ -170,55 +170,10 @@ export default {
     addGood() {
       this.isAddGood = true;
     },
-    createCert() {
-      // const html = "<!doctype html>\n" +
-      //   "<html lang=\"ru\">\n" +
-      //   "  <head>\n" +
-      //   "  <meta charset=\"utf-8\">\n" +
-      //   "  <link href=\"https://fonts.googleapis.com/css2?family=Roboto\" rel=\"stylesheet\">\n" +
-      //   "  </head>\n" +
-      //   "  <body style=\"font-family: 'Roboto', sans-serif;\">\n" +
-      //   "<div>123 привет ПРИВЕТ</div>\n" +
-      //   "  </body>\n" +
-      //   "</html>"
-      //
-      // this.doc.addFileToVFS("MyFont.ttf", myFont);
-      // this.doc.addFont("MyFont.ttf", "MyFont", "normal");
-      // this.doc.setFont("MyFont");
-      //
-      // console.log('this.doc', this.doc)
-      // // this.doc.text(html, 10, 10);
-      // // this.doc.save("a4.pdf");
-      // this.doc.html(html, {
-      //   callback: (doc) => {
-      //     console.log('doc', doc)
-      //     doc.addFileToVFS("MyFont.ttf", myFont);
-      //     doc.addFont("MyFont.ttf", "MyFont", "normal");
-      //     doc.setFont("MyFont");
-      //     doc.save("a4.pdf");
-      //   },
-      //   x: 10,
-      //   y: 10
-      // });
-        var w = window.open();
-
-
-      const html = "<!doctype html>\n" +
-        "<html lang=\"ru\">\n" +
-        "  <head>\n" +
-        "  <meta charset=\"utf-8\">\n" +
-        "  <link href=\"https://fonts.googleapis.com/css2?family=Roboto\" rel=\"stylesheet\">\n" +
-        "  </head>\n" +
-        "  <body style=\"font-family: 'Roboto', sans-serif;\">\n" +
-        "<div>123 привет ПРИВЕТ</div>\n" +
-        "  </body>\n" +
-        "</html>"
-
-
-        w.document.write(html);
-        w.window.print();
-        w.document.close();
-
+    async createCert() {
+      await this.$store.dispatch('createCert', {
+        ...this.good
+      })
     }
   },
   mounted() {

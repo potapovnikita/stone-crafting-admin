@@ -3,6 +3,8 @@ import Vuex from 'vuex';
 import * as fb from '../api/firebase';
 import { router } from '@/main';
 import { v4 as uuidv4 } from 'uuid';
+import axios from 'axios';
+
 
 Vue.use(Vuex)
 
@@ -181,6 +183,37 @@ const store = new Vuex.Store({
 
     async deleteGood({ state, commit }, good) {
       await fb.goodsCollection.doc(`${good.id}`).delete()
+    },
+
+    async createCert({ state, commit }, good) {
+      const data = {
+        number: good.number,
+        name: good.name,
+        materials: good.materials,
+        size: good.size,
+        material_obivki: good.materials,
+      }
+      const res = await axios.post(
+        'https://nikita--potapov.jsreportonline.net/api/report',
+        {
+          "template": {
+            "name": "/certificate/certificate",
+          },
+          data,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json; charset=utf-8',
+            Authorization: 'Basic bmlraXRhLS1wb3RhcG92QG1haWwucnU6MXFhelhTV0A=',
+          },
+          responseType: 'arraybuffer',
+          dataType:'blob'
+        }
+        );
+
+      const file = new Blob([(res.data)], {type: 'application/pdf'});
+      const fileURL = URL.createObjectURL(file);
+      window.open(fileURL);
     },
 
 

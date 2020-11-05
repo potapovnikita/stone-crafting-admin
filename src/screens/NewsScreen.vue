@@ -1,7 +1,7 @@
 <template lang='pug'>
   .container
     h1 Администрирование сайта
-      a(href="www.stone-crafting.com" target="_blank" title="Перейти на сайт") stone-crafting.com
+      a(href="https://www.stone-crafting.com" target="_blank" title="Перейти на сайт") stone-crafting.com
 
     .titles
       h2(:class="{'active' : section === 'goods'}" @click="setSection('goods')") Товары
