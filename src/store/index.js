@@ -191,6 +191,7 @@ const store = new Vuex.Store({
         number: good.number,
         name: good.name,
         materials: good.materials,
+        description: good.description,
         size: good.size,
         material_obivki: good.materials,
         photo: good.photos && good.photos.length && good.photos[0].url
@@ -213,9 +214,14 @@ const store = new Vuex.Store({
         }
         );
 
+      const a = document.createElement("a");
+      document.body.appendChild(a);
+      a.style = "display: none";
       const file = new Blob([(res.data)], {type: 'application/pdf'});
-      const fileURL = URL.createObjectURL(file);
-      window.open(fileURL);
+      a.href = URL.createObjectURL(file);
+      // window.open(fileURL);
+      a.download = `${data.name}.pdf`;
+      a.click();
     },
 
 
