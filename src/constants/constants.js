@@ -85,8 +85,8 @@ export const themes = [
   },
   {
     id: 4,
-    name: 'Исторические персоны',
-    nameEng: 'Historical persons',
+    name: 'Исторические персонажи',
+    nameEng: 'Historical personages',
   },
   {
     id: 5,
@@ -112,6 +112,16 @@ export const themes = [
     id: 9,
     name: 'Европа',
     nameEng: 'Europe',
+  },
+  {
+    id: 10,
+    name: 'Цветы',
+    nameEng: 'Flowers',
+  },
+  {
+    id: 11,
+    name: 'Животные',
+    nameEng: 'Animals',
   },
 ]
 

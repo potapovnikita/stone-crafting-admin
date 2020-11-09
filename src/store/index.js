@@ -186,18 +186,17 @@ const store = new Vuex.Store({
     },
 
     async createCert({ state, commit }, good) {
-      console.log('data', data)
       const data = {
         number: good.number,
         name: good.name,
         materials: good.materials,
         description: good.description,
         size: good.size,
-        material_obivki: good.materials,
+        year: good.year,
         photo: good.photos && good.photos.length && good.photos[0].url
       }
       const res = await axios.post(
-        'https://nikita--potapov.jsreportonline.net/api/report',
+        'https://nikitapotapov93.jsreportonline.net/api/report',
         {
           "template": {
             "name": "/certificate/certificate",
@@ -207,7 +206,7 @@ const store = new Vuex.Store({
         {
           headers: {
             'Content-Type': 'application/json; charset=utf-8',
-            Authorization: 'Basic bmlraXRhLS1wb3RhcG92QG1haWwucnU6MXFhelhTV0A=',
+            Authorization: 'Basic bmlraXRhcG90YXBvdjkzQGdtYWlsLmNvbToxcWF6WFNXQA==',
           },
           responseType: 'arraybuffer',
           dataType:'blob'
@@ -255,11 +254,12 @@ const uploadFiles = async (files, type) => {
       if (item.url) {
         photos.push({ ...item });
       } else {
-        await fb.storageRef.child(`${type}/${item.name}`).put(item).then(async (snapshot) => {
+        const randomName = item.name + '____' + String(new Date().getTime()).slice(5);
+        await fb.storageRef.child(`${type}/${randomName}`).put(item).then(async (snapshot) => {
           await snapshot.ref.getDownloadURL().then((res) => {
             photos.push({
               url: res,
-              name: item.name,
+              name: randomName,
               id: uuidv4(),
             });
           })

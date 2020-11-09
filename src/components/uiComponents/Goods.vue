@@ -36,9 +36,6 @@
 
 
 
-
-
-
 </template>
 
 <script>
@@ -82,8 +79,8 @@ export default {
 
       if (this.filterStateIsEmpty) return goods
 
-      const isHave = [];
       goods.forEach((good) => {
+        const isHave = [];
         if (themes.length) {
           isHave.push(good.themes
             .some(({ id }) => themes
@@ -159,7 +156,7 @@ export default {
         const good = arr[i];
         for(let j = 0; j < Object.keys(good).length; j++) {
           const key = Object.keys(good)[j];
-          if (searchProp.includes(key) && good[key].includes(search)) {
+          if (searchProp.includes(key) && good[key].toLowerCase().includes(search.toLowerCase())) {
             searched.push(good);
             break;
           }
@@ -214,10 +211,5 @@ export default {
             &.active
               background-color $main_color_blue
               border 1px solid $main_color_blue
-
-
-
-
-
 
 </style>
