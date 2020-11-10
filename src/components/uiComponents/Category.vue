@@ -1,5 +1,10 @@
 <template lang='pug'>
   div
+    ConfirmPopup(v-if="showConfirmDelete"
+      title="Вы точно хотите удалить категорию?"
+      :onClose="() => showConfirmDelete = false"
+      :confirmFunc="confirmDeleteCategory"
+    )
     .category
       .edit_section
         .label Название:
@@ -15,7 +20,7 @@
         .actions(v-if="!isEdited")
           .icon.edit(title="Редактировать" @click="openEditMode()")
             EditIcon
-          .icon.delete(title="Удалить категорию" @click="deleteCategory(category)")
+          .icon.delete(title="Удалить категорию" @click="deleteCategory()")
             Trash2Icon
 
 
@@ -41,6 +46,8 @@ import Input from "@/components/uiComponents/Input";
 
 import { EditIcon, XIcon, CheckCircleIcon, Trash2Icon } from 'vue-feather-icons'
 import {errorsFields} from "@/constants/constants";
+import ConfirmPopup from "@/components/uiComponents/ConfirmPopup";
+
 
 export default {
   components: {
@@ -50,13 +57,14 @@ export default {
     Trash2Icon,
     XIcon,
     CheckCircleIcon,
+    ConfirmPopup,
   },
   props: {
     category: {},
     isEdited: Boolean,
   },
   computed: {
-    ...mapState(['serverError', 'userProfile', 'categories']),
+    ...mapState(['serverError', 'userProfile', 'categories', 'goods']),
   },
   data() {
     return {
@@ -64,13 +72,27 @@ export default {
       editNameEng: this.category.nameEng,
       editCategoryErr: '',
       editCategoryEngErr: '',
+      showConfirmDelete: false,
     }
   },
   methods: {
-    deleteCategory(category) {
-      this.$store.dispatch('deleteCategory', {
-        ...category,
+    deleteCategory() {
+      this.showConfirmDelete = true
+    },
+    async confirmDeleteCategory() {
+      const isUsedCategory = this.goods.find(good => {
+        return good.category.some(cat => cat.id === this.category.id)
       })
+
+      // проверка, что категория уже используется в товарах
+      if (!isUsedCategory) {
+        await this.$store.dispatch('deleteCategory', {
+          ...this.category
+        })
+        this.showConfirmDelete = false
+      } else {
+        alert(`В Категории "${this.category.name}" есть товары, сначала удалите товары из категории!`)
+      }
     },
     async confirmEdit() {
       this.editCategoryErr = '';
@@ -167,8 +189,5 @@ export default {
 
       @media only screen and (max-width 600px)
         right 15px
-
-
-
 
 </style>

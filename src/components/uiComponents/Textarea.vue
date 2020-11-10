@@ -48,7 +48,7 @@ textarea
   cursor pointer
   border 1px solid $main_color_blue
   resize none
-  height auto
+  height 200px
 
   &.error
     border 1px solid $light_red
