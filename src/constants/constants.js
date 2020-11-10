@@ -58,15 +58,6 @@ export const cities = [
   },
 ]
 
-// Охота
-// Религиозная тема
-// Восточная тема
-// Исторические персоны
-// Герои сказок и былин
-// Россия
-// Америка
-// Азия
-// Европа
 export const themes = [
   {
     id: 1,
@@ -140,7 +131,7 @@ export const goodInitial = {
   cities: [],
   themes: [],
   inStock: null,
-  category: null,
+  category: [],
   photos: [],
   documents: [],
   videos: [],

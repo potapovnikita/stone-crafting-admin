@@ -106,8 +106,11 @@ export default {
         }
 
         if (category.length) {
-          isHave.push(category
-            .some(i => i.id === good.category.id)
+          isHave.push(good.category
+            .some(({ id }) => category
+              .map(i => i.id)
+              .includes(id)
+            )
           )
         }
 
@@ -176,7 +179,15 @@ export default {
       this.isAddGood = true;
     }
   },
-  mounted() {
+  async mounted() {
+    // массовое обновление чего-либо в товарах, не использовать
+    // for (const item of this.goods) {
+    //   console.log('item', item)
+    //   await this.$store.dispatch('updateGood', {
+    //     ...item,
+    //     category: !item.category.length ? [item.category] : item.category,
+    //   })
+    // }
   }
 }
 </script>

@@ -26,8 +26,9 @@
       .content {{good.number || '-'}}
     .item
       .title Категория:
-      .content(v-if="good.category") {{good.category.name || '-'}}
-      .content(v-else) Категория не указана
+      .content
+        span(v-if="good.category && good.category.length" v-for="cat in good.category") {{cat.name || '-'}}
+        span(v-else) Категория не указана
 
     .item
       .title Товар виден:
@@ -110,25 +111,13 @@
 </template>
 
 <script>
-import { myFont } from '@/sevices/pdfFont';
-import { jsPDF } from "jspdf";
-
 import {mapState} from "vuex";
 import Button from "@/components/uiComponents/Button";
 import Input from "@/components/uiComponents/Input";
-
 import { EditIcon, XIcon, CheckCircleIcon, Trash2Icon } from 'vue-feather-icons'
 import AddGood from "@/components/uiComponents/AddGood";
-import { arrayBufferToBase64 } from "@/sevices/utils"
 import ConfirmPopup from "@/components/uiComponents/ConfirmPopup";
 
-
-//    onClose: Function,
-//   confirmFunc: Function,
-//   iconType: String,
-//   title: String,
-//   text: String,
-//   error: String,
 
 export default {
   components: {
@@ -155,7 +144,6 @@ export default {
     return {
       isAddGood: false,
       showConfirmDelete: false,
-      doc: new jsPDF(),
     }
   },
   methods: {

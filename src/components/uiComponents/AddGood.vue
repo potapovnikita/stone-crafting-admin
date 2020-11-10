@@ -7,7 +7,7 @@
       Input(name="nameEng" v-model.trim="good.nameEng" :error="errors.nameEng" placeholder="Название товара на английском")
 
     .form_item__container
-      Select(:options="categories" :value.sync="good.category" placeholder="Выберите категорию")
+      Select(:options="categories" :value.sync="good.category" placeholder="Выберите категории" isMulti)
 
     .form_item__container(v-if="good.number")
       .label Номер товара:
