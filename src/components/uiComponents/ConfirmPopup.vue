@@ -1,8 +1,6 @@
 <template lang='pug'>
   .popup
     .content
-      .close(@click="onClose()")
-        XIcon
       .confirm_popup
         .popup_container
           .close_icon(@click="(e) => {e.stopPropagation(); onClose()}")

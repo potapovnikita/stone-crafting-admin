@@ -124,8 +124,7 @@
 
       .form_item__container
         Button(:name="goodForEdit ? 'Изменить' : 'Добавить'" :onClick="() => addOrUpdateGood()" :disabled="serverLoader")
-        .error(v-if="this.checkErrors()") Заполните обязательные поля
-
+        .error(v-if="formError") Заполните обязательные поля
 
 
 
@@ -180,6 +179,7 @@ export default {
         inStock: '',
         category: '',
       },
+      formError: false,
       cities,
       stockStatuses,
       themes,
@@ -229,27 +229,25 @@ export default {
         this.errors[error] = '';
       }
     },
-    checkErrors() {
-      for(let error in this.errors) {
-        return !!this.errors[error].length;
-      }
-    },
     async addOrUpdateGood() {
       this.clearErrors();
       const good = {...this.good}
 
       if (!(good.category && good.category.length)) {
         this.errors.category = 'Укажите категорию';
+        this.formError = true;
       }
       if (!good.name) {
         this.errors.name = 'Укажите имя';
+        this.formError = true;
       }
       if (!good.nameEng) {
         this.errors.nameEng = 'Укажите имя на Английском';
+        this.formError = true;
       }
 
       // проверка наличия ошибок
-      if (this.checkErrors()) return;
+      if (this.formError) return;
 
       if (this.goodForEdit) {
         await this.$store.dispatch('updateGood', {
