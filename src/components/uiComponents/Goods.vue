@@ -180,6 +180,7 @@ export default {
     }
   },
   async mounted() {
+    // console.log(this.goods)
     // массовое обновление чего-либо в товарах, не использовать
     // for (const item of this.goods) {
     //   console.log('item.category', item.category)
