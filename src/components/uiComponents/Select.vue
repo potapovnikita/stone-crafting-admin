@@ -1,7 +1,7 @@
 <template lang='pug'>
   div
     .select-container
-      .select(@click="isOpen= !isOpen" :class="{'opened': isOpen}")
+      .select(@click="isOpen= !isOpen" :class="{'opened': isOpen, 'error': error}")
         .values(v-if="isMulti && value && value.length")
           .item(v-for="option in value")
             | {{option.name}}
@@ -101,6 +101,9 @@ export default {
     position relative
     z-index 1
 
+    &.error
+      border 1px solid $light_red
+
     .placeholder
       color rgb(117, 117, 117);
     .values
@@ -162,11 +165,9 @@ export default {
         background-color $light_grey
 
 
-    &.error
-      border 1px solid $light_red
-  .errorText
-    color $light_red
-    font-size 14px
+.errorText
+  color $light_red
+  font-size 14px
 
 
 

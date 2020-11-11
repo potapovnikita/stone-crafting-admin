@@ -106,7 +106,7 @@ export default {
         }
 
         if (category.length) {
-          isHave.push(good.category
+          isHave.push(good.category && good.category
             .some(({ id }) => category
               .map(i => i.id)
               .includes(id)
@@ -182,11 +182,13 @@ export default {
   async mounted() {
     // массовое обновление чего-либо в товарах, не использовать
     // for (const item of this.goods) {
-    //   console.log('item', item)
-    //   await this.$store.dispatch('updateGood', {
-    //     ...item,
-    //     category: !item.category.length ? [item.category] : item.category,
-    //   })
+    //   console.log('item.category', item.category)
+    //   if (item.category) {
+    //     await this.$store.dispatch('updateGood', {
+    //       ...item,
+    //       category: !item.category.length ? [item.category] : item.category,
+    //     })
+    //   }
     // }
   }
 }

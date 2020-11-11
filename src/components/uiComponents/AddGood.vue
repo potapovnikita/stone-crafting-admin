@@ -7,7 +7,7 @@
       Input(name="nameEng" v-model.trim="good.nameEng" :error="errors.nameEng" placeholder="Название товара на английском")
 
     .form_item__container
-      Select(:options="categories" :value.sync="good.category" placeholder="Выберите категории" isMulti)
+      Select(:options="categories" :value.sync="good.category" :error="errors.category" placeholder="Выберите категории" isMulti)
 
     .form_item__container(v-if="good.number")
       .label Номер товара:
@@ -124,6 +124,7 @@
 
       .form_item__container
         Button(:name="goodForEdit ? 'Изменить' : 'Добавить'" :onClick="() => addOrUpdateGood()" :disabled="serverLoader")
+        .error(v-if="this.checkErrors()") Заполните обязательные поля
 
 
 
@@ -223,8 +224,32 @@ export default {
     addVideo() {
       this.$refs.videoRef.click();
     },
+    clearErrors() {
+      for (let error in this.errors) {
+        this.errors[error] = '';
+      }
+    },
+    checkErrors() {
+      for(let error in this.errors) {
+        return !!this.errors[error].length;
+      }
+    },
     async addOrUpdateGood() {
+      this.clearErrors();
       const good = {...this.good}
+
+      if (!(good.category && good.category.length)) {
+        this.errors.category = 'Укажите категорию';
+      }
+      if (!good.name) {
+        this.errors.name = 'Укажите имя';
+      }
+      if (!good.nameEng) {
+        this.errors.nameEng = 'Укажите имя на Английском';
+      }
+
+      // проверка наличия ошибок
+      if (this.checkErrors()) return;
 
       if (this.goodForEdit) {
         await this.$store.dispatch('updateGood', {
