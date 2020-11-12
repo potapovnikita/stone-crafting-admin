@@ -1,7 +1,10 @@
 <template lang='pug'>
   .good
-    #btn.form_item__container
+    #btn.form_item__container.cert
       Button(:onClick="() => createCert()" name="Создать сертификат")
+      .label C ценой:
+        input(type="checkbox" v-model="withPrice" class="certCheckbox")
+
     ConfirmPopup(v-if="showConfirmDelete"
       title="Вы точно хотите удалить товар?"
       :onClose="() => showConfirmDelete = false"
@@ -65,6 +68,9 @@
     .item
       .title Цена:
       .content {{good.price ? good.price + ' ₽' : '-'}} (в $ переводится автоматически по текущему курсу)
+    .item
+      .title Цена дл клиентов:
+      .content {{good.priceClient ? good.priceClient + ' ₽' : '-'}} (в $ переводится автоматически по текущему курсу)
 
     .item
       .title Год:
@@ -118,7 +124,6 @@ import { EditIcon, XIcon, CheckCircleIcon, Trash2Icon } from 'vue-feather-icons'
 import AddGood from "@/components/uiComponents/AddGood";
 import ConfirmPopup from "@/components/uiComponents/ConfirmPopup";
 
-
 export default {
   components: {
     ConfirmPopup,
@@ -144,6 +149,7 @@ export default {
     return {
       isAddGood: false,
       showConfirmDelete: false,
+      withPrice: false,
     }
   },
   methods: {
@@ -164,7 +170,8 @@ export default {
     },
     async createCert() {
       await this.$store.dispatch('createCert', {
-        ...this.good
+        ...this.good,
+        withPrice: this.withPrice,
       })
     }
   },
@@ -184,6 +191,19 @@ export default {
   padding 10px
   margin-bottom 15px
   position relative
+  .cert
+    display inline-flex
+    align-items center
+    .label
+      margin-left 10px
+
+      .certCheckbox
+        display inline-flex
+        align-items center
+        justify-content center
+        margin-left 8px
+        width 20px
+        height 20px
   .actions
     position absolute
     display inline-flex

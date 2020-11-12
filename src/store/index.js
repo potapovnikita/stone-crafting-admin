@@ -193,8 +193,10 @@ const store = new Vuex.Store({
         description: good.description,
         size: good.size,
         year: good.year,
-        photo: good.photos && good.photos.length && good.photos[0].url
+        photo: good.photos && good.photos.length && good.photos[0].url,
+        price: good.withPrice ? good.price.replace(/[^+\d.]/g, '') : null,
       }
+
       const res = await axios.post(
         'https://nikitapotapov93.jsreportonline.net/api/report',
         {

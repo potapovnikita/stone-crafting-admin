@@ -41,6 +41,8 @@
     .form_item__container
       Input(name="price" v-model.trim="good.price" :error="errors.price" placeholder="Цена")
     .form_item__container
+      Input(name="price" v-model.trim="good.priceClient" :error="errors.priceClient" placeholder="Цена для клиентов")
+    .form_item__container
       Select(:options="stockStatuses" :value.sync="good.inStock" placeholder="Наличие")
     .form_item__container
       Select(:options="cities" :value.sync="good.cities" placeholder="Город" isMulti)
@@ -175,6 +177,7 @@ export default {
         name: '',
         nameEng: '',
         price: '',
+        priceClient: '',
         city: '',
         inStock: '',
         category: '',
@@ -228,6 +231,7 @@ export default {
       for (let error in this.errors) {
         this.errors[error] = '';
       }
+      this.formError = false;
     },
     async addOrUpdateGood() {
       this.clearErrors();
@@ -265,7 +269,8 @@ export default {
 
   },
   async mounted() {
-    if (this.goodForEdit) this.good.photos = this.goodForEdit.photos
+      if (!this.good.category) this.good.category = [];
+      if (this.goodForEdit) this.good.photos = this.goodForEdit.photos
   }
 }
 </script>
