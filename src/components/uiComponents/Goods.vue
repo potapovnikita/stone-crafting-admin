@@ -25,6 +25,8 @@
           .type(:class="{'active': filterState.price === 'topToBottom'}" @click="setSortPrice('topToBottom')")
             | Цена
             ChevronsDownIcon
+        .label.priceCheckbox Цена для клиента
+          input(type="checkbox" v-model="filterState.priceClientCheckbox")
       .form_item__container
         Button(name='Сбросить фильтр' :onClick="() => resetFilter()")
 
@@ -72,7 +74,7 @@ export default {
       return !themes.length && !cities.length && !inStock.length && !category.length && !price && !search;
     },
     filteredGoods() {
-      const { themes, cities, inStock, category, price, search } = this.filterState;
+      const { themes, cities, inStock, category, price, search, priceClientCheckbox } = this.filterState;
 
       const goods = [...this.goods];
       const filtered = []
@@ -118,8 +120,22 @@ export default {
 
       })
 
-      if (price === 'bottomToTop') filtered.sort((a, b) => Number(a.price) - Number(b.price))
-      if (price === 'topToBottom') filtered.sort((a, b) => Number(b.price) - Number(a.price))
+      // сортируем так, чтобы тобары без цены всегда были ниже
+      if (price === 'bottomToTop') filtered.sort((a, b) => {
+        const price1 = priceClientCheckbox ? a.priceClient || '' : a.price || '';
+        const price2 = priceClientCheckbox ? b.priceClient || '' : b.price || '';
+        if (price1 && price2) return this.getPriceForCompare(price1) - this.getPriceForCompare(price2);
+        if (!price1 && !price2) return 0;
+        if (!price1) return 1;
+        if (!price2) return -1;
+      })
+      if (price === 'topToBottom') {
+        filtered.sort((a, b) => {
+          const price1 = priceClientCheckbox ? a.priceClient || '' : a.price || '';
+          const price2 = priceClientCheckbox ? b.priceClient || '' : b.price || '';
+          return this.getPriceForCompare(price2) - this.getPriceForCompare(price1)
+        })
+      }
       if (search.length > 2) return this.searchByAll(filtered, search)
 
       return filtered
@@ -139,10 +155,15 @@ export default {
         category: [],
         price: null,
         search: '',
+        priceClientCheckbox: false,
       },
     }
   },
   methods: {
+    getPriceForCompare(price) {
+      if (!price) return 0;
+      return Number(price.split('-')[0].replace(/[^+\d.]/g, '')).toFixed()
+    },
     resetFilter() {
       this.$set(this.filterState, 'themes', []);
       this.$set(this.filterState, 'cities', []);
@@ -205,6 +226,20 @@ export default {
       flex-wrap wrap
       .form_item__container
         margin-right 10px
+
+        .priceCheckbox
+          margin-top 15px
+          display flex
+          align-items center
+          input
+            display inline-flex
+            align-items center
+            justify-content center
+            margin-left 8px
+            width 20px
+            height 20px
+            cursor pointer
+
         .sort
           display flex
           flex-direction row

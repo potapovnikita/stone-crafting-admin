@@ -30,7 +30,7 @@
     .item
       .title Категория:
       .content
-        span(v-if="good.category && good.category.length" v-for="cat in good.category") {{cat.name || '-'}}
+        span(v-if="good.category && good.category.length" v-for="cat in good.category") {{getCategory(cat.id).name || '-'}}
         span(v-else) Категория не указана
 
     .item
@@ -69,7 +69,7 @@
       .title Цена:
       .content {{good.price ? good.price + ' ₽' : '-'}} (в $ переводится автоматически по текущему курсу)
     .item
-      .title Цена дл клиентов:
+      .title Цена для клиентов:
       .content {{good.priceClient ? good.priceClient + ' ₽' : '-'}} (в $ переводится автоматически по текущему курсу)
 
     .item
@@ -88,7 +88,7 @@
         span(v-if="good.cities.length" v-for="city in good.cities") {{city.name}}
         span(v-if="!good.cities.length") города не указаны
 
-    .item
+    .item(v-if="showMedia")
       .title Изображения:
       .content
         .images(v-if="good.photos && good.photos.length")
@@ -96,14 +96,14 @@
             img.img(:src="photo.url" alt="photo.name")
         span(v-if="!good.photos || !good.photos.length") Фотографий нет
 
-    .item
+    .item(v-if="showMedia")
       .title Видео:
       .content
         .video(v-if="good.videos && good.videos.length")
           a.vid(v-for="vid in good.videos" :href="vid.url" target="_blank") {{vid.name}}
         span(v-if="!good.videos || !good.videos.length") Видео нет
 
-    .item
+    .item(v-if="showMedia")
       .title Документы:
       .content
         .documents(v-if="good.documents && good.documents.length")
@@ -150,9 +150,13 @@ export default {
       isAddGood: false,
       showConfirmDelete: false,
       withPrice: false,
+      showMedia: false,
     }
   },
   methods: {
+    getCategory(id) {
+      return this.categories.find(i => i.id === id)
+    },
     openEditMode() {
       this.openEditGood()
     },
@@ -194,6 +198,15 @@ export default {
   .cert
     display inline-flex
     align-items center
+
+    @media only screen and (max-width 600px)
+      display flex
+      flex-direction column
+      align-items flex-start
+
+      .label
+        margin-top 15px
+
     .label
       margin-left 10px
 

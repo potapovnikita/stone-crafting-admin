@@ -157,6 +157,7 @@ const store = new Vuex.Store({
       good.photos = photos;
       good.documents = documents;
       good.videos = videos;
+      good.category = { id: good.category.id };
       await fb.goodsCollection.add({
         ...good,
         createdOn: new Date(),
@@ -173,6 +174,7 @@ const store = new Vuex.Store({
       const documents = await uploadFiles(good.documents, 'documents');
       good.photos = photos;
       good.documents = documents;
+      good.category = { id: good.category.id };
 
       await fb.goodsCollection.doc(good.id).update({
         ...good,

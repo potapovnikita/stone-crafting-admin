@@ -269,7 +269,13 @@ export default {
 
   },
   async mounted() {
-      if (!this.good.category) this.good.category = [];
+      if (!this.good.category) {
+        this.good.category = [];
+      } else {
+        this.good.category = this.good.category.map(i => {
+          return this.categories.find(c => c.id === i.id);
+        })
+      }
       if (this.goodForEdit) this.good.photos = this.goodForEdit.photos
   }
 }
