@@ -150,7 +150,7 @@ export default {
       isAddGood: false,
       showConfirmDelete: false,
       withPrice: false,
-      showMedia: false,
+      showMedia: true,
     }
   },
   methods: {
