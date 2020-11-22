@@ -92,7 +92,7 @@
     },
     mounted() {
       window.onbeforeunload = function() {
-        return confirm('Точно хотите выйти?');
+        if ( window.location.port !== '8080') return confirm('Точно хотите выйти?');
       }
     }
   }

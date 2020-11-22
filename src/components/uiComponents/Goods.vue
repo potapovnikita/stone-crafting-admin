@@ -32,7 +32,7 @@
 
 
     .good_card__container(v-if="filteredGoods.length")
-      GoodCard(v-for="(good, index) in filteredGoods" :good="good" :openEditGood="() => openEditGood(good)" :key="good.id")
+      GoodCard(v-for="(good, index) in filteredGoods" v-if="index < visibleGoods" :good="good" :openEditGood="() => openEditGood(good)" :key="good.id")
     .form_item__container(v-else)
       h3 Товары не найдены
 
@@ -74,6 +74,7 @@ export default {
       return !themes.length && !cities.length && !inStock.length && !category.length && !price && !search;
     },
     filteredGoods() {
+      this.visibleGoods = 5;
       const { themes, cities, inStock, category, price, search, priceClientCheckbox } = this.filterState;
 
       const goods = [...this.goods];
@@ -143,6 +144,7 @@ export default {
   },
   data() {
     return {
+      visibleGoods: 5,
       isAddGood: false,
       goodForEdit: null,
       themes,
@@ -212,6 +214,22 @@ export default {
     //     })
     //   }
     // }
+
+    window.onscroll = () => {
+      let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
+      if (bottomOfWindow) {
+        this.visibleGoods += 5;
+      }
+    };
+
+    window.addEventListener('scroll', () =>{
+      if ((document.documentElement.offsetHeight + document.documentElement.scrollTop) === document.documentElement.scrollHeight) {
+        this.visibleGoods += 5;
+      }
+    });
+  },
+  destroyed() {
+    window.removeEventListener('scroll', () => {})
   }
 }
 </script>
