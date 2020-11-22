@@ -32,7 +32,7 @@
 
 
     .good_card__container(v-if="filteredGoods.length")
-      GoodCard(v-for="good in filteredGoods" :good="good" :openEditGood="() => openEditGood(good)")
+      GoodCard(v-for="(good, index) in filteredGoods" :good="good" :openEditGood="() => openEditGood(good)")
     .form_item__container(v-else)
       h3 Товары не найдены
 

@@ -17,6 +17,12 @@
         Trash2Icon
 
     .item
+      .title Прямая ссылка на товар:
+      .content
+        a.goodLink(:href="getLink()" target="_blank" rel="noopener noreferrer" :data-text="good.number") {{getLink()}}
+        .copy_link(@click="copyText(getLink())") Копировать ссылку
+
+    .item
       .title Название:
       .content {{good.name || '-'}}
 
@@ -117,12 +123,14 @@
 </template>
 
 <script>
+import copy from 'copy-to-clipboard';
 import {mapState} from "vuex";
 import Button from "@/components/uiComponents/Button";
 import Input from "@/components/uiComponents/Input";
 import { EditIcon, XIcon, CheckCircleIcon, Trash2Icon } from 'vue-feather-icons'
 import AddGood from "@/components/uiComponents/AddGood";
 import ConfirmPopup from "@/components/uiComponents/ConfirmPopup";
+import {MAIN_DOMAIN, TEST_DOMAIN} from "@/constants/constants";
 
 export default {
   components: {
@@ -147,10 +155,11 @@ export default {
   },
   data() {
     return {
+      domain: TEST_DOMAIN,
       isAddGood: false,
       showConfirmDelete: false,
       withPrice: false,
-      showMedia: true,
+      showMedia: window.location.port !== '8080',
     }
   },
   methods: {
@@ -177,6 +186,12 @@ export default {
         ...this.good,
         withPrice: this.withPrice,
       })
+    },
+    getLink() {
+      return `${this.domain}/offers?id=${this.good.number}&p=12345678#${this.getCategory(this.good.category[0].id).query}`
+    },
+    copyText(text) {
+      copy(text)
     }
   },
   mounted() {
@@ -225,6 +240,14 @@ export default {
   .item
     display inline-flex
     margin-bottom 5px
+    .copy_link
+      margin 3px 0
+      text-decoration underline
+      opacity: 0.8;
+      cursor pointer
+      &:hover
+        opacity: 1;
+        text-decoration none
     .title
       margin-right 5px
       margin-bottom 10px

@@ -1,3 +1,5 @@
+export const MAIN_DOMAIN = 'https://stone-crafting.com'
+export const TEST_DOMAIN = 'http://stone-crafting.herokuapp.com'
 
 export const errorsFields = {
   empty: 'Поле не может быть пустым',
@@ -113,6 +115,11 @@ export const themes = [
     id: 11,
     name: 'Животные',
     nameEng: 'Animals',
+  },
+  {
+    id: 12,
+    name: 'Спорт',
+    nameEng: 'Sports',
   },
 ]
 
