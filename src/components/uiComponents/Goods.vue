@@ -223,7 +223,7 @@ export default {
     };
 
     window.addEventListener('scroll', () =>{
-      if ((document.documentElement.offsetHeight + document.documentElement.scrollTop) === document.documentElement.scrollHeight) {
+      if ((document.documentElement.offsetHeight + document.documentElement.scrollTop) + 300 > document.documentElement.scrollHeight) {
         this.visibleGoods += 5;
       }
     });

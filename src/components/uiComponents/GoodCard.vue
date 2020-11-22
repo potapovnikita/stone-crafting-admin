@@ -255,6 +255,9 @@ export default {
     .content
       display flex
       flex-direction column
+      .goodLink
+        word-break: break-all;
+
       &.warning
         color $light_red
       .documents
