@@ -20,8 +20,14 @@
       .categories
         .empty_content(v-if="!categories.length")
           h3 Категории отсутствуют
+        .item-link
+          .title
+            b Прямая ссылка на все категории товаров:
+          a.goodLink(:href="getLink('all')" target="_blank" rel="noopener noreferrer") {{getLink('all')}}
+          .copy_link(@click="copyText(getLink('all'))") Копировать ссылку
+
         .category_container(v-for="category in categories")
-          Category(:category="category" :isEdited="category.id === editedTodoId" v-on:set-is-edit="selectEditedCategory")
+          Category(:category="category" :isEdited="category.id === editedTodoId" :link="getLink(category.query)" v-on:set-is-edit="selectEditedCategory")
 
 
     .section(v-if="section === 'goods'")
@@ -41,6 +47,8 @@
   import { EditIcon, XIcon } from 'vue-feather-icons'
   import Category from "@/components/uiComponents/Category";
   import Goods from "@/components/uiComponents/Goods";
+  import copy from "copy-to-clipboard";
+  import {DEFAULT_PASS, MAIN_DOMAIN} from "@/constants/constants";
 
 
   export default {
@@ -57,6 +65,8 @@
     },
     data() {
       return {
+        domain: MAIN_DOMAIN,
+        defaultPass: DEFAULT_PASS,
         newCategory: '',
         newCategoryEng: '',
         newCategoryErr: '',
@@ -89,6 +99,12 @@
           ...category,
         })
       },
+      getLink(category) {
+        return `${this.domain}/offers?p=${this.defaultPass}#${category}`
+      },
+      copyText(text) {
+        copy(text)
+      }
     },
     mounted() {
       window.onbeforeunload = function() {
@@ -103,7 +119,8 @@
     a
       margin-left 10px
       white-space nowrap
-
+  .item-link
+    margin-bottom 20px
   .titles
     display inline-flex
     h2
