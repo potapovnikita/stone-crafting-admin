@@ -121,7 +121,7 @@ export const themes = [
   {
     id: 12,
     name: 'Спорт',
-    nameEng: 'Sports',
+    nameEng: 'Sport',
   },
 ]
 
