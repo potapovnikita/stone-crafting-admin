@@ -1,6 +1,8 @@
 export const MAIN_DOMAIN = 'https://stone-crafting.com'
 export const TEST_DOMAIN = 'http://stone-crafting.herokuapp.com'
 
+export const DEFAULT_PASS = '12345678'
+
 export const errorsFields = {
   empty: 'Поле не может быть пустым',
   passwordConfirm: 'Пароли не совпадают',

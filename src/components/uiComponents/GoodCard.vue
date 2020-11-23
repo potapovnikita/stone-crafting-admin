@@ -130,7 +130,7 @@ import Input from "@/components/uiComponents/Input";
 import { EditIcon, XIcon, CheckCircleIcon, Trash2Icon } from 'vue-feather-icons'
 import AddGood from "@/components/uiComponents/AddGood";
 import ConfirmPopup from "@/components/uiComponents/ConfirmPopup";
-import {MAIN_DOMAIN, TEST_DOMAIN} from "@/constants/constants";
+import { MAIN_DOMAIN, TEST_DOMAIN, DEFAULT_PASS } from "@/constants/constants";
 
 export default {
   components: {
@@ -155,7 +155,8 @@ export default {
   },
   data() {
     return {
-      domain: TEST_DOMAIN,
+      domain: MAIN_DOMAIN,
+      defaultPass: DEFAULT_PASS,
       isAddGood: false,
       showConfirmDelete: false,
       withPrice: false,
@@ -188,7 +189,7 @@ export default {
       })
     },
     getLink() {
-      return `${this.domain}/offers?id=${this.good.number}&p=12345678#${this.getCategory(this.good.category[0].id).query}`
+      return `${this.domain}/offers?id=${this.good.number}&p=${this.defaultPass}#${this.getCategory(this.good.category[0].id).query}`
     },
     copyText(text) {
       copy(text)

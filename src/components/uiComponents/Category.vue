@@ -22,6 +22,11 @@
             EditIcon
           .icon.delete(title="Удалить категорию" @click="deleteCategory()")
             Trash2Icon
+        .item
+          .title
+            b Прямая ссылка на категорию товаров:
+          a.goodLink(:href="getLink()" target="_blank" rel="noopener noreferrer" :data-text="category.id") {{getLink()}}
+          .copy_link(@click="copyText(getLink())") Копировать ссылку
 
 
         .edit-actions.actions(v-if="isEdited")
@@ -47,6 +52,9 @@ import Input from "@/components/uiComponents/Input";
 import { EditIcon, XIcon, CheckCircleIcon, Trash2Icon } from 'vue-feather-icons'
 import {errorsFields} from "@/constants/constants";
 import ConfirmPopup from "@/components/uiComponents/ConfirmPopup";
+import copy from "copy-to-clipboard";
+import { MAIN_DOMAIN, TEST_DOMAIN, DEFAULT_PASS } from "@/constants/constants";
+
 
 
 export default {
@@ -68,6 +76,8 @@ export default {
   },
   data() {
     return {
+      domain: MAIN_DOMAIN,
+      defaultPass: DEFAULT_PASS,
       editName: this.category.name,
       editNameEng: this.category.nameEng,
       editCategoryErr: '',
@@ -126,6 +136,12 @@ export default {
       this.editNameEng = this.category.nameEng
       this.editCategoryErr = ''
       this.editCategoryEngErr = ''
+    },
+    getLink() {
+      return `${this.domain}/offers?p=${this.defaultPass}#${this.category.query}`
+    },
+    copyText(text) {
+      copy(text)
     }
   },
   mounted() {
@@ -141,9 +157,23 @@ export default {
     min-width 300px
     max-width 600px
     background-color $light_grey_opacity
-    border-radius: 10px;
+    border-radius: 10px
     padding 10px 5px
 
+    .item
+      margin 5px 0
+      .title
+        margin 5px 0
+      .goodLink
+        word-break: break-all;
+      .copy_link
+        margin 3px 0
+        text-decoration underline
+        opacity: 0.8;
+        cursor pointer
+        &:hover
+          opacity: 1;
+          text-decoration none
     .label
       margin-bottom 5px
       padding-left 10px
