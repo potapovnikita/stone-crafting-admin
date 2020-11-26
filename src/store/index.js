@@ -191,7 +191,7 @@ const store = new Vuex.Store({
       const data = {
         number: good.number,
         name: good.name,
-        materials: good.materials,
+        materials: good.material,
         description: good.description,
         size: good.size,
         year: good.year,
