@@ -26,7 +26,7 @@
           .title
             b Прямая ссылка на категорию товаров:
           a.goodLink(:href="link" target="_blank" rel="noopener noreferrer") {{link}}
-          .copy_link(@click="copyText()") Копировать ссылку
+          .copy_link(@click="copyText(link)") Копировать ссылку
 
 
         .edit-actions.actions(v-if="isEdited")
