@@ -24,9 +24,15 @@
             Trash2Icon
         .item-link
           .title
-            b Прямая ссылка на категорию товаров:
-          a.goodLink(:href="link" target="_blank" rel="noopener noreferrer") {{link}}
-          .copy_link(@click="copyText(link)") Копировать ссылку
+            b Прямая ссылка на категорию товаров (клиентам):
+          a.goodLink(:href="link" target="_blank" rel="noopener noreferrer") {{link.clients}}
+          .copy_link(@click="copyText(link.clients)") Копировать ссылку
+
+        .item-link
+          .title
+            b Прямая ссылка на категорию товаров (партнерам):
+          a.goodLink(:href="link" target="_blank" rel="noopener noreferrer") {{link.partners}}
+          .copy_link(@click="copyText(link.partners)") Копировать ссылку
 
 
         .edit-actions.actions(v-if="isEdited")
@@ -68,7 +74,7 @@ export default {
   },
   props: {
     category: {},
-    link: String,
+    link: {},
     isEdited: Boolean,
   },
   computed: {

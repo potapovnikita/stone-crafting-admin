@@ -25,7 +25,7 @@
           .type(:class="{'active': filterState.price === 'topToBottom'}" @click="setSortPrice('topToBottom')")
             | Цена
             ChevronsDownIcon
-        .label.priceCheckbox Цена для клиента
+        .label.priceCheckbox По минимальной цене
           input(type="checkbox" v-model="filterState.priceClientCheckbox")
       .form_item__container
         Button(name='Сбросить фильтр' :onClick="() => resetFilter()")
@@ -121,7 +121,7 @@ export default {
 
       })
 
-      // сортируем так, чтобы тобары без цены всегда были ниже
+      // сортируем так, чтобы товары без цены всегда были ниже
       if (price === 'bottomToTop') filtered.sort((a, b) => {
         const price1 = priceClientCheckbox ? a.priceClient || '' : a.price || '';
         const price2 = priceClientCheckbox ? b.priceClient || '' : b.price || '';

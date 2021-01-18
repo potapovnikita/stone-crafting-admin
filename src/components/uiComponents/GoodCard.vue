@@ -17,10 +17,16 @@
         Trash2Icon
 
     .item
-      .title Прямая ссылка на товар:
+      .title Прямая ссылка на товар (клиентам):
       .content
-        a.goodLink(:href="getLink()" target="_blank" rel="noopener noreferrer" :data-text="good.number") {{getLink()}}
-        .copy_link(@click="copyText(getLink())") Копировать ссылку
+        a.goodLink(:href="getLink().clients" target="_blank" rel="noopener noreferrer" :data-text="good.number") {{getLink().clients}}
+        .copy_link(@click="copyText(getLink().clients)") Копировать ссылку
+
+    .item
+      .title Прямая ссылка на товар (партнерам):
+      .content
+        a.goodLink(:href="getLink().partners" target="_blank" rel="noopener noreferrer" :data-text="good.number") {{getLink().partners}}
+        .copy_link(@click="copyText(getLink().partners)") Копировать ссылку
 
     .item
       .title Название:
@@ -72,10 +78,10 @@
       .content {{good.sizeEng ? good.sizeEng : '-'}}
 
     .item
-      .title Цена:
+      .title Рекомендованная цена:
       .content {{good.price ? good.price + ' ₽' : '-'}} (в $ переводится автоматически по текущему курсу)
     .item
-      .title Цена для клиентов:
+      .title Минимальная цена:
       .content {{good.priceClient ? good.priceClient + ' ₽' : '-'}} (в $ переводится автоматически по текущему курсу)
 
     .item
@@ -189,7 +195,11 @@ export default {
       })
     },
     getLink() {
-      return `${this.domain}/offers?id=${this.good.number}&p=${this.defaultPass}#${this.getCategory(this.good.category[0].id).query}`
+      return {
+        clients: `${this.domain}/offers?id=${this.good.number}&p=${this.defaultPass}#${this.getCategory(this.good.category[0].id).query}`,
+        partners: `${this.domain}/partners?id=${this.good.number}&p=${this.defaultPass}#${this.getCategory(this.good.category[0].id).query}`,
+      }
+      return
     },
     copyText(text) {
       copy(text)

@@ -22,9 +22,14 @@
           h3 Категории отсутствуют
         .item-link
           .title
-            b Прямая ссылка на все категории товаров:
-          a.goodLink(:href="getLink('all')" target="_blank" rel="noopener noreferrer") {{getLink('all')}}
-          .copy_link(@click="copyText(getLink('all'))") Копировать ссылку
+            b Прямая ссылка на все категории товаров (клиентам):
+          a.goodLink(:href="getLink('all').clients" target="_blank" rel="noopener noreferrer") {{getLink('all').clients}}
+          .copy_link(@click="copyText(getLink('all').clients)") Копировать ссылку
+        .item-link
+          .title
+            b Прямая ссылка на все категории товаров (партнерам):
+          a.goodLink(:href="getLink('all').partners" target="_blank" rel="noopener noreferrer") {{getLink('all').partners}}
+          .copy_link(@click="copyText(getLink('all').partners)") Копировать ссылку
 
         .category_container(v-for="category in categories")
           Category(:category="category" :isEdited="category.id === editedTodoId" :link="getLink(category.query)" v-on:set-is-edit="selectEditedCategory")
@@ -100,7 +105,10 @@
         })
       },
       getLink(category) {
-        return `${this.domain}/offers?p=${this.defaultPass}#${category}`
+        return {
+          clients: `${this.domain}/offers?p=${this.defaultPass}#${category}`,
+          partners: `${this.domain}/partners?p=${this.defaultPass}#${category}`,
+        }
       },
       copyText(text) {
         copy(text)
