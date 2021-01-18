@@ -4,6 +4,7 @@ import * as fb from '../api/firebase';
 import { router } from '@/main';
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
+import * as Minio from 'minio';
 
 
 Vue.use(Vuex)
@@ -259,6 +260,19 @@ const uploadFiles = async (files, type) => {
         photos.push({ ...item });
       } else {
         const randomName = item.name + '____' + String(new Date().getTime()).slice(5);
+
+        // const minioClient = new Minio.Client({
+        //   endPoint: 'hb.bizmrg.com',
+        //   useSSL: false,
+        //   accessKey: 'b6pMbWukTdhtzwU4xAtLZb',
+        //   secretKey: 'cby5rANxrTD8ki3sxmCrXJzF7avNGT3dLm18tYvfkzdG'
+        // });
+        //
+        // minioClient.listBuckets((err, res) => {
+        //   console.log('err', err)
+        //   console.log('res', res)
+        // })
+
         await fb.storageRef.child(`${type}/${randomName}`).put(item).then(async (snapshot) => {
           await snapshot.ref.getDownloadURL().then((res) => {
             photos.push({
