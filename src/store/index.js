@@ -132,7 +132,7 @@ const store = new Vuex.Store({
         createdOn: new Date(),
         categoryId: uuidv4(),
         userId: fb.auth.currentUser.uid,
-        query: category.nameEng.replace(' ', '').toLowerCase(),
+        query: category.nameEng.replaceAll(' ', '').toLowerCase(),
       })
       commit('setLoader', false)
     },
@@ -141,7 +141,7 @@ const store = new Vuex.Store({
       commit('setLoader', true)
       await fb.categoriesCollection.doc(category.id).update({
         ...category,
-        query: category.nameEng.replace(' ', '').toLowerCase(),
+        query: category.nameEng.replaceAll(' ', '').toLowerCase(),
       })
       commit('setLoader', false)
     },
