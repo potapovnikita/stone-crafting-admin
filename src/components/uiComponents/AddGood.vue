@@ -39,9 +39,9 @@
     .form_item__container
       Input(name="sizeEng" v-model.trim="good.sizeEng" placeholder="Размер на английском")
     .form_item__container
-      Input(name="price" v-model.trim="good.price" :error="errors.price" placeholder="Рекомендованная цена")
+      Input(name="price" v-model.trim="good.price" :error="errors.price" placeholder="Рекомендованная цена ($)")
     .form_item__container
-      Input(name="price" v-model.trim="good.priceClient" :error="errors.priceClient" placeholder="Минимальныя цена")
+      Input(name="price" v-model.trim="good.priceClient" :error="errors.priceClient" placeholder="Минимальная цена ($)")
     .form_item__container
       Select(:options="stockStatuses" :value.sync="good.inStock" placeholder="Наличие")
     .form_item__container
@@ -266,7 +266,6 @@ export default {
       this.good = { ...goodInitial };
       this.onClose();
     },
-
   },
   async mounted() {
       if (!this.good.category) {

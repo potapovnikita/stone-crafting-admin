@@ -79,10 +79,10 @@
 
     .item
       .title Рекомендованная цена:
-      .content {{good.price ? good.price + ' ₽' : '-'}} (в $ переводится автоматически по текущему курсу)
+      .content {{good.price ? good.price + ' $' : '-'}} (в ₽ переводится автоматически по текущему курсу $)
     .item
       .title Минимальная цена:
-      .content {{good.priceClient ? good.priceClient + ' ₽' : '-'}} (в $ переводится автоматически по текущему курсу)
+      .content {{good.priceClient ? good.priceClient + ' $' : '-'}} (в ₽ переводится автоматически по текущему курсу $)
 
     .item
       .title Год:
