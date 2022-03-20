@@ -24,3 +24,9 @@ npm run test
 ```
 npm run lint
 ```
+
+https://admin.stone-crafting.com/
+
+Деплой на прод (reg ru) subdomailn admin
+$ npm run build
+$ npm run deploy
