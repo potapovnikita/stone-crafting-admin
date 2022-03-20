@@ -200,20 +200,37 @@ export default {
     },
     addGood() {
       this.isAddGood = true;
-    }
-  },
-  async mounted() {
-    // console.log(this.goods)
-    // массовое обновление чего-либо в товарах, не использовать
-    // for (const item of this.goods) {
-    //   console.log('item.category', item.category)
-    //   if (item.category) {
-    //     await this.$store.dispatch('updateGood', {
-    //       ...item,
-    //       category: !item.category.length ? [item.category] : item.category,
-    //     })
+    },
+    parsePrice(price) {
+      const DIV = 75;
+      price = price.replaceAll(" ", "");
+      if (!price) return "";
+      if (price.includes("-")) {
+        return price
+        .split("-")
+        .map((p) => Math.ceil(Number(p) / DIV).toLocaleString("ru-RU"))
+        .join(" - ");
+      }
+
+      return Math.ceil(Number(price) / DIV).toLocaleString("ru-RU");
+    },
+    // массовое обновление чего-либо в товарах, использовать в крайней необходимости
+    // async massUpdate() {
+    //   for (const item of this.goods) {
+    //     if (item.hasOwnProperty('priceClient')) {
+    //       const newPrice = this.parsePrice(item.priceClient);
+    //       // console.log('newPrice', newPrice);
+    //       await this.$store.dispatch('updateGood', {
+    //         ...item,
+    //         priceClient: newPrice, // тут указываем нужное свойство
+    //       })
+    //     }
     //   }
     // }
+  },
+  async mounted() {
+    // console.log(this.goods);
+    // console.log(this.categories);
 
     window.onscroll = () => {
       let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;

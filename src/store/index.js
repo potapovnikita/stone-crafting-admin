@@ -4,8 +4,6 @@ import * as fb from '../api/firebase';
 import { router } from '@/main';
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
-import * as Minio from 'minio';
-
 
 Vue.use(Vuex)
 

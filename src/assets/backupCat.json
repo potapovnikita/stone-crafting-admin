@@ -1,0 +1,182 @@
+[
+  {
+    "categoryId": "75312bbc-2b96-4591-bfc3-88bfcd766e7f",
+    "createdOn": {
+      "seconds": 1631896089,
+      "nanoseconds": 831000000
+    },
+    "query": "giftsandsouvenirs",
+    "name": "Подарки и сувениры",
+    "userId": "JP663BdauyOOpJVvYfnd8B9Zjbg2",
+    "nameEng": "Gifts and souvenirs",
+    "id": "ybTylChrI6UfD27fMeal"
+  },
+  {
+    "nameEng": "Information about us",
+    "name": "Информация о нас",
+    "userId": "JP663BdauyOOpJVvYfnd8B9Zjbg2",
+    "categoryId": "971d9fd3-a375-4bb0-a40a-eab4bd6181c0",
+    "query": "informationaboutus",
+    "createdOn": {
+      "seconds": 1611070751,
+      "nanoseconds": 169000000
+    },
+    "id": "UVfWH4o2FKhD0SVdeqzf"
+  },
+  {
+    "query": "corporateoffer",
+    "name": "Корпоративное предложение",
+    "id": "UCWGx0EmWhnoYNP9E9w5",
+    "userId": "JP663BdauyOOpJVvYfnd8B9Zjbg2",
+    "categoryId": "5586f2cd-aa17-4073-a694-20bb07d7acda",
+    "createdOn": {
+      "seconds": 1605874377,
+      "nanoseconds": 147000000
+    },
+    "nameEng": "Corporate offer"
+  },
+  {
+    "userId": "JP663BdauyOOpJVvYfnd8B9Zjbg2",
+    "nameEng": "Clock (watches)",
+    "query": "clock(watches)",
+    "categoryId": "3e6af962-fc5d-4f47-962d-3ee9abad982e",
+    "name": "Часы",
+    "createdOn": {
+      "seconds": 1605533925,
+      "nanoseconds": 993000000
+    },
+    "id": "tH9hfbyqwVnMYBSEDzDE"
+  },
+  {
+    "userId": "JP663BdauyOOpJVvYfnd8B9Zjbg2",
+    "createdOn": {
+      "seconds": 1605383767,
+      "nanoseconds": 796000000
+    },
+    "query": "stonejewelry",
+    "name": "Украшения из камня",
+    "categoryId": "a474b215-592f-4094-8e03-b1b0e2674919",
+    "nameEng": "Stone jewelry",
+    "id": "Ux7s4SlyAJmajO6CFCpU"
+  },
+  {
+    "name": "Инновационные скульптуры",
+    "createdOn": {
+      "seconds": 1605159952,
+      "nanoseconds": 876000000
+    },
+    "userId": "JP663BdauyOOpJVvYfnd8B9Zjbg2",
+    "nameEng": "Innovative sculptures",
+    "query": "innovativesculptures",
+    "categoryId": "7b33d551-2d66-4f40-94a6-ecb213ddccf0",
+    "id": "i6UHsMVOvRiFLcpBD0ow"
+  },
+  {
+    "name": "Шкатулки, ларцы",
+    "query": "stoneboxes",
+    "createdOn": {
+      "seconds": 1605021977,
+      "nanoseconds": 216000000
+    },
+    "categoryId": "f22868a9-2b4c-4d9a-9331-32d55962afae",
+    "userId": "JP663BdauyOOpJVvYfnd8B9Zjbg2",
+    "nameEng": "Stone boxes",
+    "id": "vp2JF54Y0mPi0IHDRD75"
+  },
+  {
+    "nameEng": "Flowers",
+    "userId": "JP663BdauyOOpJVvYfnd8B9Zjbg2",
+    "categoryId": "799a5a34-8bd4-4dea-a7e0-53ee7db99dc0",
+    "name": "Флористика",
+    "createdOn": {
+      "seconds": 1604950194,
+      "nanoseconds": 363000000
+    },
+    "query": "flowers",
+    "id": "mSfibTYFB521ub60ySGa"
+  },
+  {
+    "categoryId": "a4f6c52e-ffe6-43f2-9abf-39f601265000",
+    "createdOn": {
+      "seconds": 1604842144,
+      "nanoseconds": 552000000
+    },
+    "userId": "JP663BdauyOOpJVvYfnd8B9Zjbg2",
+    "name": "Интерьер",
+    "query": "interior",
+    "nameEng": "Interior",
+    "id": "yHdBrPlvG6u8exrKZehc"
+  },
+  {
+    "categoryId": "3e501121-5f17-4ad1-a82e-27e4c00b70fe",
+    "query": "animals",
+    "nameEng": "Animals",
+    "name": "Анималистика",
+    "userId": "JP663BdauyOOpJVvYfnd8B9Zjbg2",
+    "createdOn": {
+      "seconds": 1604832087,
+      "nanoseconds": 550000000
+    },
+    "id": "W9hgsZ863P1DIUinf2vF"
+  },
+  {
+    "nameEng": "Mineralogy",
+    "userId": "JP663BdauyOOpJVvYfnd8B9Zjbg2",
+    "createdOn": {
+      "seconds": 1604565974,
+      "nanoseconds": 80000000
+    },
+    "name": "Минералогия",
+    "categoryId": "7dae78bf-7ffb-426a-b158-ba9c99f2defe",
+    "query": "mineralogy",
+    "id": "WQKulD72pKZ7rlBPb1J8"
+  },
+  {
+    "nameEng": "Florentine mosaic",
+    "categoryId": "46abbf38-2157-4d14-9056-ed3d288080d3",
+    "query": "florentinemosaic",
+    "name": "Флорентийская мозаика. Каменные картины",
+    "createdOn": {
+      "seconds": 1604565785,
+      "nanoseconds": 648000000
+    },
+    "id": "QQy0wHQWFoWzx53C959H",
+    "userId": "JP663BdauyOOpJVvYfnd8B9Zjbg2"
+  },
+  {
+    "name": "Шедевры Камнерезного искусства",
+    "createdOn": {
+      "seconds": 1604565718,
+      "nanoseconds": 254000000
+    },
+    "id": "J77rYfyGDm7IviKVUowt",
+    "userId": "JP663BdauyOOpJVvYfnd8B9Zjbg2",
+    "nameEng": "Masterpieces of Stone-crafting art",
+    "query": "masterpiecesofstone-craftingart",
+    "categoryId": "f218242c-049c-4c56-8a10-f2530f25b18a"
+  },
+  {
+    "nameEng": "Religious icons",
+    "createdOn": {
+      "seconds": 1604565659,
+      "nanoseconds": 408000000
+    },
+    "userId": "JP663BdauyOOpJVvYfnd8B9Zjbg2",
+    "id": "3nhtqPvzNSTitGtWrzmC",
+    "query": "religiousicons",
+    "categoryId": "566424b5-557c-4fcc-98c0-51a925b92073",
+    "name": "Религиозные темы"
+  },
+  {
+    "categoryId": "818637e0-cee0-478c-aad0-294d42be520a",
+    "name": "Бронза",
+    "userId": "JP663BdauyOOpJVvYfnd8B9Zjbg2",
+    "query": "bronze",
+    "nameEng": "Bronze",
+    "createdOn": {
+      "seconds": 1603205422,
+      "nanoseconds": 7000000
+    },
+    "id": "jQloBuquSqFT3aU3H9Oe"
+  }
+]
