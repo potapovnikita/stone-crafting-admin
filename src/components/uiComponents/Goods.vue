@@ -52,6 +52,8 @@ import GoodCard from "@/components/uiComponents/GoodCard";
 import {copyObject} from "@/sevices/utils";
 import { cities, goodInitial, stockStatuses, themes } from "@/constants/constants";
 
+import backup from '../../assets/backupGoods.json';
+
 export default {
   components: {
     Select,
@@ -202,31 +204,57 @@ export default {
       this.isAddGood = true;
     },
     parsePrice(price) {
-      const DIV = 75;
       price = price.replaceAll(" ", "");
       if (!price) return "";
+      if (price.includes("---")) return '---' // это для товаров, которых нет в бэкапе
       if (price.includes("-")) {
         return price
         .split("-")
-        .map((p) => Math.ceil(Number(p) / DIV).toLocaleString("ru-RU"))
+        .map((p) => Math.ceil(Number(p)))
         .join(" - ");
       }
 
-      return Math.ceil(Number(price) / DIV).toLocaleString("ru-RU");
+      return Math.ceil(Number(price));
     },
     // массовое обновление чего-либо в товарах, использовать в крайней необходимости
-    // async massUpdate() {
-    //   for (const item of this.goods) {
-    //     if (item.hasOwnProperty('priceClient')) {
-    //       const newPrice = this.parsePrice(item.priceClient);
-    //       // console.log('newPrice', newPrice);
-    //       await this.$store.dispatch('updateGood', {
-    //         ...item,
-    //         priceClient: newPrice, // тут указываем нужное свойство
-    //       })
-    //     }
-    //   }
-    // }
+    async massUpdate() {
+      // for (const item of this.goods) {
+      //   if (item.priceClient) {
+      //     item.priceClient = this.parsePrice(item.priceClient);
+      //   }
+      //   if (item.price) {
+      //     item.price = this.parsePrice(item.price);
+      //   }
+      //   await this.$store.dispatch('updateGood', {
+      //     ...item,
+      //   })
+      // }
+
+      // for (const item of this.goods) {
+      //   const goodBackuped = backup.find((good) => good.goodId === item.goodId)
+      //   if (goodBackuped) {
+      //     if (goodBackuped.priceClient) {
+      //       item.priceClient = goodBackuped.priceClient
+      //       console.log('item.priceClient', item.priceClient)
+      //     }
+      //     if (goodBackuped.price) {
+      //       item.price = goodBackuped.price
+      //       console.log('item.price', item.price)
+      //     }
+      //     await this.$store.dispatch('updateGood', {
+      //       ...item,
+      //     })
+      //   } else {
+      //     await this.$store.dispatch('updateGood', {
+      //       ...item,
+      //       priceClient: '---',
+      //       price: '---',
+      //     })
+      //   }
+      // }
+      console.log('this.goods', this.goods)
+      console.log('backup', backup)
+    }
   },
   async mounted() {
     // console.log(this.goods);
