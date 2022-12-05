@@ -34,6 +34,12 @@
           a.goodLink(:href="link" target="_blank" rel="noopener noreferrer") {{link.partners}}
           .copy_link(@click="copyText(link.partners)") Копировать ссылку
 
+        .item-link
+          .title
+            b Прямая ссылка на категорию товаров (салон):
+          a.goodLink(:href="link" target="_blank" rel="noopener noreferrer") {{link.salon}}
+          .copy_link(@click="copyText(link.salon)") Копировать ссылку
+
 
         .edit-actions.actions(v-if="isEdited")
           .icon.confirm(title="Сохранить" @click="confirmEdit()")

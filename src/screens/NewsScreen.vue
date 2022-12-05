@@ -31,6 +31,12 @@
           a.goodLink(:href="getLink('all').partners" target="_blank" rel="noopener noreferrer") {{getLink('all').partners}}
           .copy_link(@click="copyText(getLink('all').partners)") Копировать ссылку
 
+        .item-link
+          .title
+            b Прямая ссылка на все категории товаров (салон):
+          a.goodLink(:href="getLink('all').salon" target="_blank" rel="noopener noreferrer") {{getLink('all').salon}}
+          .copy_link(@click="copyText(getLink('all').salon)") Копировать ссылку
+
         .category_container(v-for="category in categories")
           Category(:category="category" :isEdited="category.id === editedTodoId" :link="getLink(category.query)" v-on:set-is-edit="selectEditedCategory")
 
@@ -108,6 +114,7 @@
         return {
           clients: `${this.domain}/offers?p=${this.defaultPass}#${category}`,
           partners: `${this.domain}/partners?p=${this.defaultPass}#${category}`,
+          salon: `${this.domain}/salon?p=${this.defaultPass}#${category}`,
         }
       },
       copyText(text) {

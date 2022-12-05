@@ -29,6 +29,12 @@
         .copy_link(@click="copyText(getLink().partners)") Копировать ссылку
 
     .item
+      .title Прямая ссылка на товар (салон):
+      .content
+        a.goodLink(:href="getLink().salon" target="_blank" rel="noopener noreferrer" :data-text="good.number") {{getLink().salon}}
+        .copy_link(@click="copyText(getLink().salon)") Копировать ссылку
+
+    .item
       .title Название:
       .content {{good.name || '-'}}
 
@@ -198,8 +204,8 @@ export default {
       return {
         clients: `${this.domain}/offers?id=${this.good.number}&p=${this.defaultPass}#${this.getCategory(this.good.category[0].id).query}`,
         partners: `${this.domain}/partners?id=${this.good.number}&p=${this.defaultPass}#${this.getCategory(this.good.category[0].id).query}`,
+        salon: `${this.domain}/salon?id=${this.good.number}&p=${this.defaultPass}#${this.getCategory(this.good.category[0].id).query}`,
       }
-      return
     },
     copyText(text) {
       copy(text)

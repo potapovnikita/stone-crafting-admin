@@ -18,6 +18,9 @@
       .form_item__container
         Select(:options="stockStatuses" :value.sync="filterState.inStock" placeholder="Наличие" isMulti)
       .form_item__container
+        Select(:options="stores" :value.sync="filterState.shownFor" placeholder="Товар виден" isMulti)
+
+      .form_item__container
         .sort
           .type(:class="{'active': filterState.price === 'bottomToTop'}" @click="setSortPrice('bottomToTop')")
             | Цена
@@ -50,7 +53,7 @@ import { EditIcon, XIcon, CheckCircleIcon, ChevronsDownIcon, ChevronsUpIcon } fr
 import AddGood from "@/components/uiComponents/AddGood";
 import GoodCard from "@/components/uiComponents/GoodCard";
 import {copyObject} from "@/sevices/utils";
-import { cities, goodInitial, stockStatuses, themes } from "@/constants/constants";
+import { cities, goodInitial, stockStatuses, themes, stores } from "@/constants/constants";
 
 import backup from '../../assets/backupGoods.json';
 
@@ -72,12 +75,12 @@ export default {
   computed: {
     ...mapState(['categories', 'goods']),
     filterStateIsEmpty() {
-      const { themes, cities, inStock, category, price, search } = this.filterState;
-      return !themes.length && !cities.length && !inStock.length && !category.length && !price && !search;
+      const { themes, cities, inStock, shownFor,  category, price, search } = this.filterState;
+      return !themes.length && !cities.length && !inStock.length && !shownFor.length && !category.length && !price && !search;
     },
     filteredGoods() {
       this.visibleGoods = 5;
-      const { themes, cities, inStock, category, price, search, priceClientCheckbox } = this.filterState;
+      const { themes, cities, inStock, shownFor,category, price, search, priceClientCheckbox } = this.filterState;
 
       const goods = [...this.goods];
       const filtered = []
@@ -107,6 +110,12 @@ export default {
         if (inStock.length) {
           isHave.push(inStock
             .some(i => good.inStock && i.id === good.inStock.id)
+          )
+        }
+
+        if (shownFor.length) {
+          isHave.push(shownFor
+            .some(i => good.visibility &&  good.visibility.find(v => v.code === i.code))
           )
         }
 
@@ -152,10 +161,12 @@ export default {
       themes,
       cities,
       stockStatuses,
+      stores,
       filterState: {
         themes: [],
         cities: [],
         inStock: [],
+        shownFor: [],
         category: [],
         price: null,
         search: '',
@@ -172,6 +183,7 @@ export default {
       this.$set(this.filterState, 'themes', []);
       this.$set(this.filterState, 'cities', []);
       this.$set(this.filterState, 'inStock', []);
+      this.$set(this.filterState, 'shownFor', []);
       this.$set(this.filterState, 'category', []);
       this.$set(this.filterState, 'price', null);
       this.$set(this.filterState, 'search', '');

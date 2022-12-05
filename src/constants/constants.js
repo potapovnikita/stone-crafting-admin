@@ -18,6 +18,10 @@ export const stores = [
     name: 'Клиенты',
     code: 'clients',
   },
+  {
+    name: 'Салон',
+    code: 'salon',
+  },
 ]
 
 export const stockStatuses = [
