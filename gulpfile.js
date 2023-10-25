@@ -5,7 +5,7 @@ const config = {
   host: '31.31.196.159',
   port: 22,
   username: 'u0507339',
-  password: '!1UdrOfQ',
+  password: 'J7f99gc8ldRggEKg',
 }
 
 const gulpSSH = new GulpSSH({
